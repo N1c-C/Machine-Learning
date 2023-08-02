@@ -1,0 +1,55 @@
+from scipy.spatial import distance
+
+def euclidean_distance(pt1, pt2):
+  distance = 0
+  for i in range(len(pt1)):
+    distance += (pt1[i] - pt2[i]) ** 2
+  return distance ** 0.5
+
+def manhattan_distance(pt1, pt2):
+  distance = 0
+  for i in range(len(pt1)):
+    distance += abs(pt1[i] - pt2[i])
+  return distance
+
+def hamming_distance(pt1, pt2):
+  distance = 0
+  for i in range(len(pt1)):
+    if pt1[i] != pt2[i]:
+      distance += 1
+  return distance
+
+def distance(pt1, pt2):
+  """"Finds Euclidean distance between two points"""
+  squared_difference = sum([pt1[i] - pt2[i]) ** 2  for i in range(len(movie1))])
+  return squared_difference ** 0.5
+
+  def classify(unknown, dataset, labels, k):
+  distances = []
+  #Looping through all points in the dataset
+  for title in dataset:
+    movie = dataset[title]
+    distance_to_point = distance(movie, unknown)
+    #Adding the distance and point associated with that distance
+    distances.append([distance_to_point, title])
+  distances.sort()
+  #Taking only the k closest points
+  neighbors = distances[0:k]
+  num_good = 0
+  num_bad = 0
+  for neighbor in neighbors:
+    title = neighbor[1]
+    if labels[title] == 0:
+      num_bad += 1
+    elif labels[title] == 1:
+      num_good += 1
+  if num_good > num_bad:
+    return 1
+  else:
+    return 0
+
+if __name__ = '__main__':    
+  print(distance.euclidean([1, 2], [4, 0]))
+  print(distance.cityblock([1, 2], [4, 0]))
+  print(distance.hamming([5, 4, 9], [1, 7, 9]))
+  print(euclidean_distance([1, 2], [4, 0]))
